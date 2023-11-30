@@ -1,9 +1,11 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
-import Currency from './models/currencyModel.js';
+import { graphqlHTTP } from 'express-graphql';
+import schema from './apis/graphql.js';
+import router from './apis/rest.js';
+
 
 
 dotenv.config();
@@ -24,94 +26,13 @@ app.get('/', (req, res) => {
   res.send('API is Running!');
 });
 
+app.use('/gql', graphqlHTTP({
+  schema: schema,
+  graphiql: true, // Set to false if you don't want GraphiQL enabled
+}));
+app.use('/api',router);
+
  
-/**
-* 
-*  @type {import("express").RequestHandler} */
-app.post('/currency',async (req,res)=>{
-  const {name,abbreviation,dollarRate } = req.body;
-
-  
-  try{
-
-    const currency = await Currency.create(
-      {
-        name,
-        abbreviation,
-        dollarRate
-      }
-    )
-
-    return res.status(201).json(currency)
-  }
-  catch(error){
-    console.log(error)
-    return res.status(400).json({message:error.message});
-  }
-  
-
-})
-
-/**
-* 
-*  @type {import("express").RequestHandler} */
-app.delete('/currency',async (req,res)=>{
-  const {name} = req.body;
-
-  
-  try{
-    if(name){
-      const currency = await Currency.findOneAndDelete({name})
-      if(currency){
-        return res.status(200).json(currency)
-
-      }
-      return res.status(404).json({message:`Currency ${name} not found`});
-    }
-    else {
-      return res.status(400).json({message:"Please Insert Currency In Request"})
-    }
-
-    
-  }
-  catch(error){
-    console.log(error)
-    return res.status(400).json({message:error.message});
-  }
-  
-
-})
-
-/**
-* 
-*  @type {import("express").RequestHandler} */
-app.get('/currency',async (req,res)=>{  
-  try{
-    let  {sourceCurrencyName,targetCurrencyName,amount} = req.query;
-    if(!amount){
-      amount = 1;
-    }
-    
-    const sourceDollarRate = (await Currency.findOne({ name: sourceCurrencyName }, 'dollarRate')).dollarRate
-    const targetDollarRate = (await Currency.findOne({ name: targetCurrencyName }, 'dollarRate')).dollarRate
-    console.log(sourceDollarRate)
-    console.log(targetDollarRate)
-  
-    const usd = amount / sourceDollarRate ; // Convert AED to USD
-    const targetAmount =  usd * targetDollarRate;      // Convert USD to SAR
-    return res.status(200).json({
-      targetAmount
-    })
-  }
-  catch(error){
-    console.log(error)
-    return res.status(400).json({message:error.message});
-  }
-  
-})
-
-app.use(notFound);
-//app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
