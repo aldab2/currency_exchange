@@ -11,7 +11,7 @@ import router from './apis/rest.js';
 dotenv.config();
 connectDB();
 const app = express();
-const PORT =process.env.PORT || 5000;
+const PORT =process.env.PORT || 5002;
 //Allows to parse raw json in body
 app.use(express.json());
 //Allows us to send form data and parse them
