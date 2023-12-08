@@ -1,0 +1,41 @@
+swagger: "2.0"
+
+info:
+  title: currencygateway
+  description: currency api gateway
+  version: 1.0.0
+
+host: us-central1-coe558.cloudfunctions.net
+
+basePath: /
+
+schemes:
+  - https
+
+paths:
+  /add-currency:
+    post:
+      summary: add new currency
+      operationId: add new currency
+      description: add new currency
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/add-curr
+
+  /del-currency:
+    delete:
+      summary: delete currency
+      operationId: delete currency
+      description: delete currency
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/del-curr
+
