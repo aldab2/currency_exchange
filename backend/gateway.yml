@@ -26,7 +26,7 @@ paths:
       x-google-backend:
         address: https://us-central1-coe558.cloudfunctions.net/add-curr
 
-  /del-currency:
+  /delete-currency:
     delete:
       summary: delete currency
       operationId: delete currency
@@ -38,4 +38,17 @@ paths:
           description: OK
       x-google-backend:
         address: https://us-central1-coe558.cloudfunctions.net/del-curr
+
+  /exchange-currency:
+    get:
+      summary: exchange-currency
+      operationId: exchange-currency
+      description: exchange-currency
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://exchangev1-qvezk2posa-uc.a.run.app/exchange
 
