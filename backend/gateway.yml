@@ -52,6 +52,19 @@ paths:
       x-google-backend:
         address: https://exchangev1-qvezk2posa-uc.a.run.app/exchange
 
+  /get-all:
+    get:
+      summary: Get all currencies
+      operationId: Get all currencies
+      description: Get all currencies
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/get-all
+
   /graphql:
     post:
       summary: GraphQL Endpoint
