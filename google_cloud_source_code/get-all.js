@@ -60,7 +60,16 @@ const currencySchema = mongoose.Schema({
 const Currency = mongoose.model('Currency',currencySchema);
 
 functions.http('get-all', async (req, res) => {
+  if (req.method === 'OPTIONS') {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'GET');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.status(204).send('');
+  }
+  
   if (req.method === 'GET') {
+    res.set('Access-Control-Allow-Origin', '*');
   try{
     const currencies = await Currency.find()
     return res.status(200).json(currencies)
