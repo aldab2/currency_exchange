@@ -1,0 +1,81 @@
+swagger: "2.0"
+
+info:
+  title: currencygateway
+  description: currency api gateway
+  version: 1.0.0
+
+host: us-central1-coe558.cloudfunctions.net
+
+basePath: /
+
+schemes:
+  - https
+
+paths:
+  /add-currency:
+    post:
+      summary: add new currency
+      operationId: add new currency
+      description: add new currency
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/add-curr
+
+  /delete-currency:
+    delete:
+      summary: delete currency
+      operationId: delete currency
+      description: delete currency
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/del-curr
+
+  /exchange-currency:
+    get:
+      summary: exchange-currency
+      operationId: exchange-currency
+      description: exchange-currency
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://exchangev1-qvezk2posa-uc.a.run.app/exchange
+
+  /get-all:
+    get:
+      summary: Get all currencies
+      operationId: Get all currencies
+      description: Get all currencies
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/get-all
+
+  /graphql:
+    post:
+      summary: GraphQL Endpoint
+      operationId: GraphQL Endpoint
+      description: GraphQL Endpoint
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/add-curr-graphql-1/graphql
