@@ -16,7 +16,7 @@ const ExchangeComponent = () => {
   //const GET_CURRENCIES_URL = "/gateway/get-all";
   //const GET_EXCHANGE_CURRENCIES_URL = "/gateway/exchange-currency";
   const GET_CURRENCIES_URL = "https://currencyv8-cbem0hbz.uc.gateway.dev/get-all";
-  const GET_EXCHANGE_CURRENCIES_URL = "https://https://currencyv8-cbem0hbz.uc.gateway.dev";
+  const GET_EXCHANGE_CURRENCIES_URL = "https://currencyv8-cbem0hbz.uc.gateway.dev/exchange-currency";
 
 
   useEffect(() => {
