@@ -1,7 +1,10 @@
 # currency_exchange
 # running the backend server
-npm install express --legacy-peer-deps 
-node server.js
+```bash
+cd backend
+npm install
+npm start
+```
 
 ### Running the frontent
 ```bash
