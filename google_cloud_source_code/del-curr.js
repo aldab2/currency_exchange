@@ -61,7 +61,16 @@ const currencySchema = mongoose.Schema({
 const Currency = mongoose.model('Currency',currencySchema);
 
 functions.http('del-currency', async (req, res) => {
+  if (req.method === 'OPTIONS') {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Access-Control-Allow-Methods', 'DELETE');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.status(204).send('');
+  }
+  
   if (req.method === 'DELETE') {
+    res.set('Access-Control-Allow-Origin', '*');
   try{
     const { name } = req.body; // Extracting from the request body
     if(name){

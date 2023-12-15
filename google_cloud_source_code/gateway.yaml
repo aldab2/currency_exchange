@@ -25,6 +25,19 @@ paths:
           description: OK
       x-google-backend:
         address: https://us-central1-coe558.cloudfunctions.net/add-curr
+    options:
+      summary: CORS support
+      operationId: add new currency preflight
+      description: add new currency preflight
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Preflight request successful
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/del-curr
 
   /delete-currency:
     delete:
@@ -36,6 +49,19 @@ paths:
       responses:
         200:
           description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/del-curr
+    options:
+      summary: CORS support
+      operationId: delete currency preflight
+      description: delete currency preflight
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Preflight request successful
       x-google-backend:
         address: https://us-central1-coe558.cloudfunctions.net/del-curr
 
