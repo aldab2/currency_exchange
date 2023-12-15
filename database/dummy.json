@@ -1,0 +1,38 @@
+[
+    {
+      "name": "US Dollar",
+      "abbreviation": "USD",
+      "dollarRate": 1
+    },
+    {
+      "name": "Euro",
+      "abbreviation": "EUR",
+      "dollarRate": 1.12
+    },
+    {
+      "name": "Japanese Yen",
+      "abbreviation": "JPY",
+      "dollarRate": 0.0091
+    },
+    {
+      "name": "British Pound",
+      "abbreviation": "GBP",
+      "dollarRate": 1.31
+    },
+    {
+      "name": "Australian Dollar",
+      "abbreviation": "AUD",
+      "dollarRate": 0.74
+    },
+    {
+      "name": "Canadian Dollar",
+      "abbreviation": "CAD",
+      "dollarRate": 0.79
+    },
+    {
+      "name": "Swiss Franc",
+      "abbreviation": "CHF",
+      "dollarRate": 1.08
+    }
+  ]
+  
