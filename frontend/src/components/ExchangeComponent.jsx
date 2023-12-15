@@ -3,29 +3,54 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ExchangeComponent = () => {
   const [currencies, setCurrencies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [sourceCurrency, setSourceCurrency] = useState('');
   const [targetCurrency, setTargetCurrency] = useState('');
   const [amount, setAmount] = useState('');
   const [exchangeResult, setExchangeResult] = useState(null);
+  // Add a CSS class for the loading overlay and the greyed-out background
+  const loadingOverlay = isLoading ? "loading-overlay" : "";
+  const loadingBackground = isLoading ? "loading-background" : "";
 
-  const GET_CURRENCIES_URL = "https://currencyv7-cbem0hbz.uc.gateway.dev/get-all";
-  const GET_EXCHANGE_CURRENCIES_URL = "https://currencyv7-cbem0hbz.uc.gateway.dev/exchange-currency";
+
+  //const GET_CURRENCIES_URL = "/gateway/get-all";
+  //const GET_EXCHANGE_CURRENCIES_URL = "/gateway/exchange-currency";
+  const GET_CURRENCIES_URL = "https://currencyv8-cbem0hbz.uc.gateway.dev/get-all";
+  const GET_EXCHANGE_CURRENCIES_URL = "https://https://currencyv8-cbem0hbz.uc.gateway.dev";
+
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(GET_CURRENCIES_URL)
       .then(response => response.json())
-      .then(data => setCurrencies(data));
+      .then(data => {
+        setCurrencies(data);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleExchange = () => {
+    setIsLoading(true);
     const url = `${GET_EXCHANGE_CURRENCIES_URL}?sourceCurrencyName=${sourceCurrency}&targetCurrencyName=${targetCurrency}&amount=${amount}`;
     fetch(url)
       .then(response => response.json())
-      .then(data => setExchangeResult(data.targetAmount));
+      .then(data => {
+        setExchangeResult(data.targetAmount);
+        setIsLoading(false);
+      });
   };
 
+
+
   return (
-    <div className="container mt-5">
+    <div className={`container mt-5 ${loadingBackground}`}>
+       {isLoading && 
+      <div className="loading-spinner text-center">
+        <div className="spinner-border text-primary" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    }
       <h1 className="mb-4">Currency Exchange</h1>
       <div className="mb-3">
         <label htmlFor="sourceCurrency" className="form-label">Source Currency</label>
