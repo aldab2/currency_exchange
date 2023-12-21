@@ -37,7 +37,7 @@ paths:
         200:
           description: Preflight request successful
       x-google-backend:
-        address: https://us-central1-coe558.cloudfunctions.net/del-curr
+        address: https://us-central1-coe558.cloudfunctions.net/add-curr
 
   /delete-currency:
     delete:
@@ -103,5 +103,14 @@ paths:
       responses:
         200:
           description: OK
+      x-google-backend:
+        address: https://us-central1-coe558.cloudfunctions.net/add-curr-graphql-1/graphql
+    options:
+      summary: CORS support for GraphQL
+      operationId: graphqlOptions
+      description: Respond to preflight request for GraphQL
+      responses:
+        200:
+          description: Preflight request successful
       x-google-backend:
         address: https://us-central1-coe558.cloudfunctions.net/add-curr-graphql-1/graphql
