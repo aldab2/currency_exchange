@@ -1,14 +1,14 @@
 # currency_exchange
 # running the backend server
 ```bash
-cd backend
+cd development_files/backend
 npm install
 npm start
 ```
 
 ### Running the frontent
 ```bash
-cd frontend
+cd react_frontend
 npm install
 npm run start
 ```
